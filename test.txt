@@ -1,0 +1,44 @@
+[
+	[
+		["Ichorus Short sword of assassination","#FF6A00; text-shadow: 0 0 2px #000, 0 0 2px #FF6A00"],
+        ["Soul bound to: Kcp","#DDD"],
+		[
+			["","Through durability"],
+			["#DDD","#DDD"]
+		],
+        [
+            ["Damage 280 - 332","+72 - 85"],
+            ["#DDD","#DDD"]
+        ],
+        [
+            ["Strength +70% (+39)","+18% (+10)"],
+            ["#DDD","#DDD"]
+        ],
+        [
+            ["Dexterity +7","+1"],
+            ["#DDD","#DDD"]
+        ],
+        [
+            ["Dexterity +25% (+59)","+6% (+14)"],
+            ["#DDD","#DDD"]
+        ],
+        [
+            ["Agility +42% (+150)","+11% (+39)"],
+            ["#DDD","#DDD"]
+        ],
+        [
+            ["Constitution -35","-9"],
+            ["#DDD","#DDD"]
+        ],
+        [
+            ["Constitution -26% (-28)","-7% (-8)"],
+            ["#DDD","#DDD"]
+        ],
+        ["+20 Damage ","#00B712"],
+        ["Level 101","#808080"],
+        ["Value 21.354 <div class=\"icon_gold\"><\/div>","#DDDDDD"],
+        ["Durability 398303\/398303 (100%)","#00ff00"],
+        ["Conditioning 99576\/99576 (100%)","#ffff00"]
+        ,["Resources xd", "#ffff00"]
+	]
+]
