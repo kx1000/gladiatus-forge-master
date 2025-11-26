@@ -90,6 +90,13 @@
 
                     const div = node.querySelector('div');
                     if (div) {
+                      // Create a grid container for three columns
+                      const gridContainer = document.createElement('div');
+                      gridContainer.style.display = 'grid';
+                      gridContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                      gridContainer.style.gap = '4px';
+                      div.appendChild(gridContainer);
+
                       Object.entries(result.rawResources)
                       .sort((a, b) => b[1] - a[1])
                       .forEach(([component, quantity]) => {
@@ -97,7 +104,7 @@
                         divContainer.style.display = 'flex';
                         divContainer.style.alignItems = 'center';
                         divContainer.style.gap = '4px';
-                        div.appendChild(divContainer);
+                        gridContainer.appendChild(divContainer);
 
                         const img = document.createElement('img');
                         img.src = `${apiUrl}/img/resources/resource-18-${component}.png`;
@@ -110,11 +117,6 @@
                         quantityLabel.style.color = '#ce9569';
                         quantityLabel.textContent = `x ${quantity}`;
                         divContainer.appendChild(quantityLabel);
-
-                        // const newP = document.createElement('p');
-                        // newP.style.color = '#ce9569';
-                        // newP.textContent = `${resource.component} x ${resource.quantity}`;
-                        // div.appendChild(newP);
                       });
                     }
                   } catch (error) {
