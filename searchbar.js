@@ -5,8 +5,8 @@
     const country = el.className.match(/mmo_([A-Z]{2})/)?.[1].toLowerCase();
     console.log(country);
 
-    // const apiUrl = 'https://gladiatus-compare.kx1000.cyou';
-    const apiUrl = 'http://127.0.0.1:8000';
+    const apiUrl = 'https://gladiatus-compare.kx1000.cyou';
+    // const apiUrl = 'http://127.0.0.1:8000';
 
     const url = new URL(window.location.href);
     const modParam = url.searchParams.get('mod');

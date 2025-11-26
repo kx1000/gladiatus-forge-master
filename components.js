@@ -1,11 +1,11 @@
 (async function () {
     'use strict';
 
-    // const apiUrl = 'https://gladiatus-compare.kx1000.cyou';
-    const apiUrl = 'http://127.0.0.1:8000';
+    const apiUrl = 'https://gladiatus-compare.kx1000.cyou';
+    // const apiUrl = 'http://127.0.0.1:8000';
 
     const delay = ms => new Promise(res => setTimeout(res, ms));
-    await delay(500);
+    await delay(100);
 
     const el = document.querySelector('#mmoMySelectText1');
     const country = el.className.match(/mmo_([A-Z]{2})/)?.[1].toLowerCase();
@@ -16,17 +16,45 @@
 
     const elements = document.querySelectorAll('[class*="item-i-"]');
 
+    const handleMouseEnter = (e) => {
+      if (e.target.dataset.tooltip) {
+        currentHovered = e.target;
+        console.log('mouseenter', e.target.dataset.tooltip);
+        return;
+      }
+    }
+
     elements.forEach(element => {
-      element.addEventListener('mouseenter', (e) => {
-        if (e.target.dataset.tooltip) {
-          currentHovered = e.target;
-          console.log('mouseenter', e.target.dataset.tooltip);
-          return;
-        }
+      element.addEventListener('mouseenter', handleMouseEnter);
+    });
+
+    const resetItemsListener = (elements) => {
+      elements.forEach(async element => {
+        currentHovered = null;
+        element.removeEventListener('mouseenter', handleMouseEnter);
+        console.log('cleared');
+        await delay(100);
+
+        const newElements = document.querySelectorAll('[class*="item-i-"]');
+        newElements.forEach(element => {
+          element.addEventListener('mouseenter', handleMouseEnter);
+        });
+      });
+    }
+
+    const tabs = document.querySelectorAll('.awesome-tabs');
+
+    tabs.forEach( tab => {
+      tab.addEventListener('click', async (e) => {
+        // clear all handleMouseEnter listeners
+
+        resetItemsListener(elements);
       });
     });
 
-    
+    document.addEventListener('mouseup', async () => {
+      resetItemsListener(elements);
+    });
 
     const observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
