@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "Gladiatus Forge Master",
-    "description": "Dodatek do gry Gladiatus - Forge",
-    "version": "0.1.0",
+    "description": "Gladiatus Forge Master is a browser extension that helps you with forging and smelting in Gladiatus.",
+    "version": "0.2.0",
     "author": "Kacper Rogula",
     "icons": {
         "16": "icons/icon16.png",
@@ -23,10 +23,17 @@
         ],
         "js": [
           "vendor/nice-select2.min.js", 
+          "vendor/popper.js",
+          "vendor/tippy.js",
           "searchbar.js",
-          "components.js"
+          "components.js",
+          "horrerum.js",
+          "calculator.js"
         ],
-        "css": ["vendor/nice-select2.min.css"]
+        "css": [
+          "vendor/nice-select2.min.css", 
+          "style.css"
+        ]
       }
     ],
     "host_permissions": [

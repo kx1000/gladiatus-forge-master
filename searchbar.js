@@ -1,9 +1,5 @@
 (async function () {
     'use strict';
-    
-    const el = document.querySelector('#mmoMySelectText1');
-    const country = el.className.match(/mmo_([A-Z]{2})/)?.[1].toLowerCase();
-    console.log(country);
 
     const apiUrl = 'https://gladiatus-compare.kx1000.cyou';
     // const apiUrl = 'http://127.0.0.1:8000';
@@ -14,6 +10,9 @@
     if (modParam !== 'forge') {
       return;
     }
+
+    const el = document.querySelector('#mmoMySelectText1');
+    const country = el.className.match(/mmo_([A-Z]{2})/)?.[1].toLowerCase();
 
     async function fetchJSON(url) {
       try {

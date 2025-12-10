@@ -1,0 +1,11 @@
+.crafting_requirements li {
+    background: none !important;
+}
+
+.calc-div {
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
