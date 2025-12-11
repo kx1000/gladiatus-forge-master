@@ -9,3 +9,32 @@
     justify-content: center;
     gap: 4px;
 }
+
+.calculation-simulation div {
+    padding-left: 40px;
+    margin-bottom: 2px;
+}
+
+.gca_forge_material_links {
+    margin-top: -136px !important;
+}
+
+.res-calc-qty {
+    width: 10px;
+}
+
+.plus-calc-btn, .minus-calc-btn {
+    padding-left: 2px;
+    padding-right: 2px;
+    color: #453011;
+    border: 1px solid #E9D2A0;
+    background: linear-gradient(to bottom, #C3AB6F, #886933);
+    /* box-shadow: 0 0 0 1px #8E753F; */
+    width: 15px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+.calc-div-container {
+    margin-top: 4px;
+}

@@ -27,6 +27,7 @@
         const colorDiv = document.createElement('div');
         colorDiv.className = 'calc-div';
         colorDiv.dataset.colorName = colorName;
+        colorDiv.style.color = COLORS[colorName];
         calcDiv.appendChild(colorDiv);
         
         const minusBtn = document.createElement('button');
@@ -72,6 +73,7 @@
 
     resourceBoxes.forEach(box => {
         const calcDiv = document.createElement('div');
+        calcDiv.className = 'calc-div-container';
         box.appendChild(calcDiv);
 
         // Create calculator for each color
@@ -110,7 +112,7 @@
         Object.keys(COLORS).forEach(colorName => {
             colorPercentages[colorName] = Math.round((baseQuantities[colorName] * 100) / currentSumQuantity);
             const colorDiv = document.querySelector(`#sim-percentage-${colorName.toLowerCase()}`);
-            colorDiv.textContent = `(${colorPercentages[colorName]}%)`;
+            colorDiv.textContent = `${colorPercentages[colorName]}%`;
         })
     };
 
@@ -148,19 +150,24 @@
     calculationSimulationDiv.className = 'calculation-simulation';
     qualitiesBox.appendChild(calculationSimulationDiv);
 
+    const simulatorHeading = document.createElement('h2');
+    simulatorHeading.textContent = 'Planner:';
+    calculationSimulationDiv.appendChild(simulatorHeading);
+
     Object.entries(baseQuantities).forEach(([colorName, quantity]) => {
         const colorDiv = document.createElement('div');
         colorDiv.className = 'color-div';
+        colorDiv.style.color = COLORS[colorName];
         calculationSimulationDiv.appendChild(colorDiv);
         
-        const colorNameSpan = document.createElement('span');
-        colorNameSpan.className = 'color-name';
-        colorNameSpan.textContent = colorName.charAt(0).toUpperCase() + colorName.slice(1);
-        colorDiv.appendChild(colorNameSpan);
-
         const percentageSpan = document.createElement('span');
         percentageSpan.id = `sim-percentage-${colorName.toLowerCase()}`;
-        percentageSpan.textContent = `(${colorPercentages[colorName]}%)`;
+        percentageSpan.textContent = `${colorPercentages[colorName]}%`;
         colorDiv.appendChild(percentageSpan);
+
+        const colorNameSpan = document.createElement('span');
+        colorNameSpan.className = 'color-name';
+        colorNameSpan.textContent = ' ' + colorName.charAt(0).toUpperCase() + colorName.slice(1);
+        colorDiv.appendChild(colorNameSpan);
     });
 })();
