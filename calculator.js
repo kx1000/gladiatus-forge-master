@@ -26,6 +26,7 @@
     function createColorCalculator(calcDiv, colorName) {
         const colorDiv = document.createElement('div');
         colorDiv.className = 'calc-div';
+        colorDiv.dataset.colorName = colorName;
         calcDiv.appendChild(colorDiv);
         
         const minusBtn = document.createElement('button');
@@ -45,12 +46,25 @@
 
         plusBtn.addEventListener('click', () => {
             const currentValue = parseInt(qty.textContent) || 0;
+            const colorName = colorDiv.dataset.colorName;
+            // Update baseQuantity by adding the simulation current value
+            if (baseQuantities && baseQuantities[colorName] !== undefined) {
+                baseQuantities[colorName] += 1;
+                console.log(`Updated base${colorName.charAt(0).toUpperCase() + colorName.slice(1)}Quantity to`, baseQuantities[colorName]);
+                handleSimulationPercentageUpdate();
+            }
             qty.textContent = (currentValue + 1).toString();
         });
 
         minusBtn.addEventListener('click', () => {
             const currentValue = parseInt(qty.textContent) || 0;
             if (currentValue > 0) {
+                // Update baseQuantity by adding the simulation current value
+                if (baseQuantities && baseQuantities[colorName] !== undefined) {
+                    baseQuantities[colorName] -= 1;
+                    console.log(`Updated base${colorName.charAt(0).toUpperCase() + colorName.slice(1)}Quantity to`, baseQuantities[colorName]);
+                    handleSimulationPercentageUpdate();
+                }
                 qty.textContent = (currentValue - 1).toString();
             }
         });
@@ -89,6 +103,16 @@
     Object.keys(COLORS).forEach(colorName => {
         colorPercentages[colorName] = 0;
     });
+
+    const handleSimulationPercentageUpdate = () => {
+        const currentSumQuantity = Object.values(baseQuantities).reduce((acc, curr) => acc + curr, 0);
+
+        Object.keys(COLORS).forEach(colorName => {
+            colorPercentages[colorName] = Math.round((baseQuantities[colorName] * 100) / currentSumQuantity);
+            const colorDiv = document.querySelector(`#sim-percentage-${colorName.toLowerCase()}`);
+            colorDiv.textContent = `(${colorPercentages[colorName]}%)`;
+        })
+    };
 
     qualityRows.forEach(row => {
         console.log('quality row', row.style.color, row.textContent);
