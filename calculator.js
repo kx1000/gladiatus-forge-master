@@ -24,7 +24,7 @@
         const resourceBoxes = requirementsBox.querySelectorAll('li');
     
         // Function to create a calculator div for a specific color
-        function createColorCalculator(calcDiv, colorName) {
+        function createColorCalculatorForResource(calcDiv, colorName, resourceCalculationState) {
             const colorDiv = document.createElement('div');
             colorDiv.className = 'calc-div fmc';
             colorDiv.dataset.colorName = colorName;
@@ -50,12 +50,13 @@
                 const currentValue = parseInt(qty.textContent) || 0;
                 const colorName = colorDiv.dataset.colorName;
                 // Update baseQuantity by adding the simulation current value
-                if (baseQuantities && baseQuantities[colorName] !== undefined) {
+                if (baseQuantities && baseQuantities[colorName] !== undefined && resourceCalculationState.calculationCurrent < resourceCalculationState.total) {
                     baseQuantities[colorName] += 1;
+                    resourceCalculationState.calculationCurrent += 1;
                     console.log(`Updated base${colorName.charAt(0).toUpperCase() + colorName.slice(1)}Quantity to`, baseQuantities[colorName]);
                     handleSimulationPercentageUpdate();
+                    qty.textContent = (currentValue + 1).toString();
                 }
-                qty.textContent = (currentValue + 1).toString();
             });
     
             minusBtn.addEventListener('click', () => {
@@ -64,22 +65,29 @@
                     // Update baseQuantity by adding the simulation current value
                     if (baseQuantities && baseQuantities[colorName] !== undefined) {
                         baseQuantities[colorName] -= 1;
+                        resourceCalculationState.calculationCurrent -= 1;
                         console.log(`Updated base${colorName.charAt(0).toUpperCase() + colorName.slice(1)}Quantity to`, baseQuantities[colorName]);
                         handleSimulationPercentageUpdate();
+                        qty.textContent = (currentValue - 1).toString();
                     }
-                    qty.textContent = (currentValue - 1).toString();
                 }
             });
         }
     
         resourceBoxes.forEach(box => {
+            const resourceCalculationState = {
+                initialCurrent: parseInt(box.querySelector('.forge_actual_value').textContent),
+                total: parseInt(box.querySelector('.forge_setpoint').textContent),
+                calculationCurrent: parseInt(box.querySelector('.forge_actual_value').textContent),
+            };
+
             const calcDiv = document.createElement('div');
             calcDiv.className = 'calc-div-container fmc';
             box.appendChild(calcDiv);
     
             // Create calculator for each color
             Object.keys(COLORS).forEach(colorName => {
-                createColorCalculator(calcDiv, colorName);
+                createColorCalculatorForResource(calcDiv, colorName, resourceCalculationState);
             });
         });
     

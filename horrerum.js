@@ -8,6 +8,7 @@
       return;
     }
 
+    return; // TODO: remove this when back to development
 
     
     const pricing = {
