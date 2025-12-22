@@ -5,7 +5,8 @@
     // const apiUrl = 'http://127.0.0.1:8000';
 
     const delay = ms => new Promise(res => setTimeout(res, ms));
-    await delay(100);
+    await delay(500);
+    console.log('debug');
 
     const el = document.querySelector('#mmoMySelectText1');
     const country = el.className.match(/mmo_([A-Z]{2})/)?.[1].toLowerCase();
@@ -14,23 +15,32 @@
 
     let currentHovered = null;
 
-    const elements = document.querySelectorAll('[class*="item-i-"]');
+    const dollElements = document.querySelectorAll('.charmercsel');
+    dollElements.forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        currentHovered = null;
+      });
+    });
+
+    const itemElements = document.querySelectorAll('[class*="item-i-"]');
 
     const handleMouseEnter = (e) => {
+      currentHovered = null;
       if (e.target.dataset.tooltip) {
         currentHovered = e.target;
-        console.log('mouseenter', e.target.dataset.tooltip);
+        // console.log('mouseenter', e.target.dataset.tooltip);
         return;
       }
     }
 
-    elements.forEach(element => {
+    itemElements.forEach(element => {
       element.addEventListener('mouseenter', handleMouseEnter);
     });
 
     const resetItemsListener = (elements) => {
+      currentHovered = null;
+
       elements.forEach(async element => {
-        currentHovered = null;
         element.removeEventListener('mouseenter', handleMouseEnter);
         console.log('cleared');
         await delay(100);
@@ -48,12 +58,12 @@
       tab.addEventListener('click', async (e) => {
         // clear all handleMouseEnter listeners
 
-        resetItemsListener(elements);
+        resetItemsListener(itemElements);
       });
     });
 
     document.addEventListener('mouseup', async () => {
-      resetItemsListener(elements);
+      resetItemsListener(itemElements);
     });
 
     const observer = new MutationObserver(mutations => {
@@ -63,11 +73,15 @@
 
                   await delay(30);
 
+                  if (currentHovered === null) {
+                    return;
+                  }
+
                   const match = currentHovered.dataset.tooltip.match(/\[\[\["(.*?)",/);
 
                   const itemName = match ? match[1] : null;
 
-                  console.log(currentHovered.dataset.basis, itemName);
+                  // console.log(currentHovered.dataset.basis, itemName);
 
                   const url = `${apiUrl}/item`;
                   try {
@@ -87,6 +101,10 @@
                     }
                 
                     const result = await response.json();
+
+                    if (result.rawResources.length === 0) {
+                      return;
+                    }
 
                     const div = node.querySelector('div');
                     if (div) {
