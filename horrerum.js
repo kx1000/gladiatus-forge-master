@@ -1,360 +1,107 @@
-(async function () {
+(async function async () {
     'use strict';
 
-    const url = new URL(window.location.href);
-    const submodParam = url.searchParams.get('submod');
+    const browserUrl = new URL(window.location.href);
+    const submodParam = browserUrl.searchParams.get('submod');
     
     if (submodParam !== 'storage') {
       return;
     }
 
-    return; // TODO: remove this when back to development
+    const apiUrl = 'https://gladiatus-compare.kx1000.cyou';
+    // const apiUrl = 'http://127.0.0.1:8000';
 
+
+    const url = `${apiUrl}/prices`;
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+    });
+
+    const pricing = await response.json();
+    console.log(pricing);
+
+    const format = value =>
+        Number(value).toLocaleString('de-DE');
     
-    const pricing = {
-        '1': {
-            // '1': 0, // blue
-            // '2': 0, // purple
-            '3': 80000, // orange
-            '4': 500000 // red
-        },
-        '2': {
-            // '1': 0,
-            // '2': 0,
-            '3': 80000,
-            '4': 500000
-        },
-        '3': {
-            // '1': 0,
-            // '2': 0,
-            '3': 80000,
-            '4': 500000
-        },
-        '4': {
-            // '1': 0,
-            // '2': 0,
-            '3': 80000,
-            '4': 500000
-        },
-        '5': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '6': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '7': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '8': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '9': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '10': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '11': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '12': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '13': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '14': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '15': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '16': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '17': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '18': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '19': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '20': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '21': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '22': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '23': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '24': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '25': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '26': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '27': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '28': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '29': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '30': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '31': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '32': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '33': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '34': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '35': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '36': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '37': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '38': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '39': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '40': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '41': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '42': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '43': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '44': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '45': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '46': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '47': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '48': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '49': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '50': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '51': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '52': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '53': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-        '54': {
-            // '1': 0,
-            // '2': 0,
-            '3': 0,
-            '3': 0
-        },
-    };
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
-    const rows = document.querySelectorAll('tr[data-type]');
-    rows.forEach(row => {
-        const resourceId = row.dataset.type;
+    const goldIcon = `<img alt="" src="//gf3.geo.gfsrv.net/cdn6b/71e68d38f81ee6f96a618f33c672e0.gif" align="absmiddle" border="0">`;
 
-        const cells = row.querySelectorAll('td[data-quality]');
+    const resourcesTable = document.querySelector('#resource-list');
 
-        cells.forEach(cell => {
-            const quality = cell.dataset.quality;
-            const quantity = cell.innerHTML;
-            
-            console.log(resourceId, quality, quantity);
-            
-            const price = pricing[resourceId]?.[quality] ?? 'N/A';
+    const estimationRow = document.createElement('thead');
+    estimationRow.innerHTML = `<tr><td colspan="12" style="text-align: center;">Total market estimation (server x1): <span id="total-estimation-value">0</span> ${goldIcon}</td></tr>`;
 
-            tippy(cell, {
-                content: price,
-            });
-        })
+    resourcesTable.appendChild(estimationRow);
+
+    // todo: recalculate on click #store and #linkupgrade
+
+    const calculateEstimations = (pricing) => {
+        const rows = document.querySelectorAll('tr[data-type]');
+        let totalEstimation = 0;
+        rows.forEach(row => {
+            const resourceId = row.dataset.type;
+
+            const cells = row.querySelectorAll('td[data-quality]');
+
+            cells.forEach(cell => {
+                const quality = cell.dataset.quality;
+                const quantity = cell.innerHTML;
+                
+                console.log(resourceId, quality, quantity);
+
+                if (!pricing[resourceId]?.[quality]) {
+                return;
+                }
+
+                const price = pricing[resourceId]?.[quality];
+
+                if (quantity !== '-') {
+                    totalEstimation += quantity * price;
+                }
+
+                const headerSection = `<div><strong>Market estimation</strong> (server x1)</div>`
+                const onePieceSection = `<div style="text-align: center;">1 ~ ${format(price)} ${goldIcon}</div>`;
+                const quantitySection = quantity !== '-' ? `<div style="text-align: center;"><strong>${quantity} ~ ${format(quantity * price)}</strong> ${goldIcon}</div>` : '';
+
+                tippy(cell, {
+                    content: `${headerSection} ${onePieceSection} ${quantitySection}`,
+                    interactive: true,
+                    allowHTML: true,
+                });
+            })
+        });
+
+        console.log('totalEstimation', totalEstimation);
+        document.getElementById('total-estimation-value').textContent = format(totalEstimation);
+    }
+
+    calculateEstimations(pricing);
+
+    const storeButton = document.getElementById('store');
+    storeButton.addEventListener('click', async () => {
+        await delay(700);
+        calculateEstimations(pricing);
+    });
+
+    const linkUpgradeButton = document.getElementById('linkupgrade');
+    linkUpgradeButton.addEventListener('click', async () => {
+        await delay(700);
+        calculateEstimations(pricing);
+    });
+
+    const removeDeliverButton = document.getElementById('remove-deliver');
+    removeDeliverButton.addEventListener('click', async () => {
+        await delay(700);
+        calculateEstimations(pricing);
+    });
+
+    const changeDeliverButton = document.getElementById('change-deliver');
+    changeDeliverButton.addEventListener('click', async () => {
+        await delay(700);
+        calculateEstimations(pricing);
     });
 })();
