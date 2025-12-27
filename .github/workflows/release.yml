@@ -1,8 +1,9 @@
 name: Create Archive
 
-on:
-    release:
-        types: [published]
+on: 
+    push:
+      tags:
+      - '*'
 
 jobs:
   build:
