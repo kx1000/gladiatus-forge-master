@@ -33,11 +33,9 @@
     const resourcesTable = document.querySelector('#resource-list');
 
     const estimationRow = document.createElement('thead');
-    estimationRow.innerHTML = `<tr><td colspan="12" style="text-align: center;">Total market estimation (server x1): <span id="total-estimation-value">0</span> ${goldIcon}</td></tr>`;
+    estimationRow.innerHTML = `<tr><td colspan="12" style="text-align: center;">${window.HTMLComponents.logo16} Total market estimation (server x1): <span id="total-estimation-value">0</span> ${goldIcon}</td></tr>`;
 
     resourcesTable.appendChild(estimationRow);
-
-    // todo: recalculate on click #store and #linkupgrade
 
     const calculateEstimations = (pricing) => {
         const rows = document.querySelectorAll('tr[data-type]');
@@ -63,7 +61,7 @@
                     totalEstimation += quantity * price;
                 }
 
-                const headerSection = `<div><strong>Market estimation</strong> (server x1)</div>`
+                const headerSection = `<div><strong>${window.HTMLComponents.logo16} Market estimation</strong> (server x1)</div>`
                 const onePieceSection = `<div style="text-align: center;">1 ~ ${format(price)} ${goldIcon}</div>`;
                 const quantitySection = quantity !== '-' ? `<div style="text-align: center;"><strong>${quantity} ~ ${format(quantity * price)}</strong> ${goldIcon}</div>` : '';
 

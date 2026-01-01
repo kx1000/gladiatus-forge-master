@@ -107,36 +107,36 @@
                     }
 
                     const div = node.querySelector('div');
-                    if (div) {
-                      // Create a grid container for three columns
-                      const gridContainer = document.createElement('div');
-                      gridContainer.style.display = 'grid';
-                      gridContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
-                      gridContainer.style.gap = '4px';
-                      div.appendChild(gridContainer);
+                    // Create a grid container for three columns
+                    const gridContainer = document.createElement('div');
+                    gridContainer.classList.add('fm-div');
+                    gridContainer.style.display = 'grid';
+                    gridContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                    gridContainer.style.gap = '4px';
+                    div.appendChild(gridContainer);
 
-                      Object.entries(result.rawResources)
-                      .sort((a, b) => b[1] - a[1])
-                      .forEach(([component, quantity]) => {
-                        const divContainer = document.createElement('div');
-                        divContainer.style.display = 'flex';
-                        divContainer.style.alignItems = 'center';
-                        divContainer.style.gap = '4px';
-                        gridContainer.appendChild(divContainer);
+                    Object.entries(result.rawResources)
+                    .sort((a, b) => b[1] - a[1])
+                    .forEach(([component, quantity]) => {
+                      const divContainer = document.createElement('div');
+                      divContainer.style.display = 'flex';
+                      divContainer.style.alignItems = 'center';
+                      divContainer.style.gap = '4px';
+                      gridContainer.appendChild(divContainer);
 
-                        const img = document.createElement('img');
-                        img.src = `${apiUrl}/img/resources/resource-18-${component}.png`;
-                        img.alt = 'test';
-                        img.width = 16;
-                        img.height = 16;
-                        divContainer.appendChild(img);
+                      const img = document.createElement('img');
+                      img.src = `${apiUrl}/img/resources/resource-18-${component}.png`;
+                      img.alt = 'test';
+                      img.width = 16;
+                      img.height = 16;
+                      divContainer.appendChild(img);
 
-                        const quantityLabel = document.createElement('span');
-                        quantityLabel.style.color = '#ce9569';
-                        quantityLabel.textContent = `x ${quantity}`;
-                        divContainer.appendChild(quantityLabel);
-                      });
-                    }
+                      const quantityLabel = document.createElement('span');
+                      quantityLabel.style.color = '#ce9569';
+                      quantityLabel.textContent = `x ${quantity}`;
+                      divContainer.appendChild(quantityLabel);
+                    });
+                    
                   } catch (error) {
                     console.error(error.message);
                   }

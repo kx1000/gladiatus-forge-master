@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Gladiatus Forge Master",
     "description": "Gladiatus Forge Master is a browser extension that helps you with forging and smelting in Gladiatus.",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "author": "Kacper Rogula",
     "icons": {
         "16": "icons/icon16.png",
@@ -25,6 +25,7 @@
           "vendor/nice-select2.min.js", 
           "vendor/popper.js",
           "vendor/tippy.js",
+          "html-components.js",
           "searchbar.js",
           "components.js",
           "horrerum.js",

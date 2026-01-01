@@ -160,7 +160,7 @@
         qualitiesBox.appendChild(calculationSimulationDiv);
     
         const simulatorHeading = document.createElement('h2');
-        simulatorHeading.textContent = 'Planner:';
+        simulatorHeading.innerHTML = `${window.HTMLComponents.logo16} Planner:`;
         calculationSimulationDiv.appendChild(simulatorHeading);
     
         Object.entries(baseQuantities).forEach(([colorName, quantity]) => {
